@@ -1,0 +1,208 @@
+:root {
+  --bg-color: rgb(215, 140, 1);
+}
+
+@-webkit-keyframes slide-in {
+  100% {
+    left: 0; } }
+
+@keyframes slide-in {
+  100% {
+    left: 0; } }
+
+@-webkit-keyframes slide-out {
+  0% {
+    left: 0; }
+  100% {
+    left: -16vw; } }
+
+@keyframes slide-out {
+  0% {
+    left: 0; }
+  100% {
+    left: -16vw; } }
+
+@-webkit-keyframes container-in {
+  0% {
+    width: 99vw; }
+  100% {
+    width: 83vw; } }
+
+@keyframes container-in {
+  0% {
+    width: 99vw; }
+  100% {
+    width: 83vw; } }
+
+@-webkit-keyframes container-out {
+  0% {
+    width: 83vw; }
+  100% {
+    width: 99vw; } }
+
+@keyframes container-out {
+  0% {
+    width: 83vw; }
+  100% {
+    width: 99vw; } }
+
+.slide-in {
+  -webkit-animation: slide-in 0.5s forwards;
+  animation: slide-in 0.5s forwards; }
+
+.slide-out {
+  -webkit-animation: slide-out 0.5s;
+  animation: slide-out 0.5s; }
+
+.btn-click {
+  background-color: #ffd43b !important;
+  color: #001c40; }
+
+.container-in {
+  -webkit-animation: container-in 0.5s forwards;
+  animation: container-in 0.5s forwards; }
+
+.container-out {
+  -webkit-animation: container-out 0.5s;
+  animation: container-out 0.5s; }
+
+#admin-main header {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+  background-color: var(--bg-color);
+  position: fixed;
+  z-index: 1; }
+  #admin-main header .header-bar, #admin-main header .log-out {
+    display: block;
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    line-height: 70px;
+    text-align: center;
+    color: white; }
+  #admin-main header .header-bar:hover i {
+    cursor: pointer; }
+  #admin-main header .log-out:hover i {
+    cursor: pointer;
+    color: red; }
+
+#admin-main #menu {
+  position: fixed;
+  display: block;
+  width: 16vw;
+  height: 100vh;
+  left: -16vw;
+  background-color: var(--bg-color);
+  z-index: 2; }
+  #admin-main #menu hr {
+    background-color: #c6defd;
+    margin: 0 16px;
+    margin-top: 16px; }
+  #admin-main #menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    margin-top: 16px;
+    padding: 0; }
+    #admin-main #menu .menu-list li {
+      list-style-type: none; }
+      #admin-main #menu .menu-list li a {
+        background-color: var(--bg-color);
+        border: none;
+        margin: 12px 0;
+        border-radius: 6px; }
+    #admin-main #menu .menu-list a:hover {
+      background-color: #c6defd;
+      color: #001c40; }
+  #admin-main #menu .admin-infor {
+    margin: 30px 0;
+    display: flex;
+    width: 100%;
+    height: 160px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
+
+#admin-main #container {
+  display: block;
+  float: right;
+  width: 100%;
+  height: 100%;
+  margin-top: 70px;
+  background-color: #f5f5f5; }
+
+.layout-common {
+  width: 96%;
+  border-radius: 4px;
+  padding: 0 14px;
+  background-color: white;
+  box-shadow: 0 1px 2px #0000003d;
+  margin: 16px auto; }
+
+.btn-add, .btn-excel, .delete-all {
+  width: 160px;
+  height: 40px; }
+
+.btn-add {
+  background: #9df99d !important;
+  color: #003c00 !important; }
+
+.btn-excel {
+  color: #008c04 !important;
+  background: #a2ecb5 !important; }
+
+.delete-all {
+  color: white !important;
+  background-color: #fb4c4c; }
+
+.trash, .edit {
+  width: 40px;
+  height: 30px; }
+
+.trash {
+  background: #f7c3c2;
+  border: none;
+  color: #de0400; }
+
+.edit {
+  color: #f59d39;
+  background-color: #fbe2c5;
+  border: none;
+  margin-left: 8px; }
+
+.bg-success {
+  background-color: #bfefc4 !important;
+  color: #02790c !important;
+  padding: 10px; }
+
+.bg-danger {
+  background-color: #f9c9cd !important;
+  color: #a90312 !important;
+  padding: 10px; }
+
+#admin-product {
+  display: block;
+  width: 100%;
+  height: 100%; }
+  #admin-product .product-header {
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    line-height: 40px;
+    border-left: 6px solid #FFD43B; }
+    #admin-product .product-header span {
+      margin-left: 6px; }
+  #admin-product .element-button {
+    display: flex;
+    justify-content: space-between;
+    width: 36%;
+    margin-bottom: 20px;
+    margin-top: 10px; }
+  #admin-product tr > td:nth-child(9) {
+    display: flex;
+    padding: 31px 8px; }
