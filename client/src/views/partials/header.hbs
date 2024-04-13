@@ -1,0 +1,134 @@
+<style>
+  .form-user {
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #fff;
+    padding: 30px 30px 60px 30px;
+    width: 240px;
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+    right: 86px;
+    display: none;
+}
+
+.show {
+  display: flex;
+}
+</style>
+
+<!-- Header -->
+{{!-- Set style header with hight 60 --}}
+<header class="color" style="height:60px">
+    <div
+      class="header_container d-flex justify-content-between align-items-center"
+    >
+      <div
+        class="header_container_section start justify-content-between d-flex"
+      >
+        <a href="/" class="header_logo ">
+          <img class="w-100" src="/imgs/main_logo.png" alt="Đây là logo" />
+        </a>
+        <ul class="list list-unstyled">
+          <li>
+            <a class="list_all">
+              <i class="fa-solid fa-bars"></i> Danh mục
+              <i class="ti-angle-down"></i>
+            </a>
+          </li>
+          <ul class="list_c2">
+            <li>
+              <a href="/category=1000">Xe cộ
+                <span class="icon_menu"><i class="fa-solid fa-angle-right"></i></span>
+              </a>
+              <ul class="list_c3 bg-white">
+                <li><a href="/category=1001">Xe máy </a></li>
+                <li><a href="/category=1002">Xe đạp </a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/category/=1003">
+                Đồ điện tử
+                <span class="icon_menu">
+                  <i class="fa-solid fa-angle-right"></i>
+                </span>
+              </a>
+              <ul class="list_c3 bg-white">
+                <li><a href="/category=1004">Điện thoại, Laptop </a></li>
+                <li><a href="/category=1005">Phụ kiện điện tử </a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/category=1006">
+                Đồ dùng học tập
+                <span class="icon_menu"><i class="fa-solid fa-angle-right"></i></span>
+              </a>
+              <ul class="list_c3 bg-white">
+                <li><a href="/category=1007">Bàn, ghế </a></li>
+                <li><a href="/category=1008">Đèn học </a></li>
+              </ul>
+            </li>
+            <li><a href="/category=1009">Đồ gia dụng</a></li>
+            <li><a href="/category=1010">Đồ trang trí </a></li>
+            <li><a href="/category=1011">Thời trang </a></li>
+          </ul>
+        </ul>
+      </div>
+      <div class="header_container_section middle">
+        <form class="search_form" action="/search" method="post">
+          <input class="search" type="search" name="keyword" placeholder="Tìm kiếm sản phẩm"/>
+          <button type="submit" class="search_icon" style="border: none;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+      <ul
+        class="header_container_section end d-flex list-unstyled justify-content-center align-items-center"
+      >
+        <li class="extention" >
+          <a href="/favorite"><i class="fa-solid fa-heart" style="font-size: 20px;"></i> Yêu thích</a>
+        </li>
+        <li class="extention acc" style="margin:0 10px">
+          <a onclick="openSubMenu()">
+            <i class="active-icon fa-solid fa-user acc-name"></i> Tài khoản
+            <form class="form form-user">
+              <a href="/user/" class="btn btn-info" style="margin-bottom: 18px; color:white;">Xem thông tin tài khoản</a>
+              <a href="/user/logout" class="btn btn-info" style="color: white;">Đăng xuất</a>
+            </form>
+          </a>
+        </li>
+        <li class="extention push_news">
+          <a href=""><i class="fa-regular fa-pen-to-square"></i> Đăng tin</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+<script>
+  const checkLogin = () => {
+  const cookie = document.cookie;
+
+  const arrToken = cookie.split(' ');
+  let cookies = {};
+
+  arrToken.map((e) => {
+    let sub = e.trim().split('=');
+    cookies[sub[0]] = sub[1];
+  });
+
+  const acc = document.querySelector('.acc')
+  if (cookies.accessToken) {
+    acc.innerHTML = '<a onclick="openSubMenu()"><i class="active-icon fa-solid fa-user acc-name"></i> Tài khoản <form class="form form-user"><a href="/seller" class="btn btn-info" style="margin-bottom: 18px; color:white;">Xem thông tin tài khoản</a><a href="/logout" class="btn btn-info" style="color: white;">Đăng xuất</a></form></a>'
+  } else {
+    acc.innerHTML = '<a href="/login"><i class="active-icon fa-solid fa-user acc-name"></i> Tài khoản</a>'
+  }
+}  
+checkLogin()
+</script>
+
+<script>
+  const openSubMenu = () => {
+    const subMenu = document.querySelector('.form-user')
+    subMenu.classList.toggle('show')
+  }
+</script>
