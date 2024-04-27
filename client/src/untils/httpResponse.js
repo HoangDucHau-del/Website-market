@@ -1,4 +1,3 @@
-// Status code
 module.exports.statusCode = {
     OK: 200,
     CREATED: 201,
@@ -10,7 +9,6 @@ module.exports.statusCode = {
     INTERNAL_SERVER_ERROR: 500,
 };
 
-// response message
 module.exports.message = {
     SUCCESS: 'success',
     ERROR: 'error',

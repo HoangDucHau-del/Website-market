@@ -1,15 +1,13 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// Tạo access token và refresh token
-// refresh token có chức năng làm chìa khóa để tạo lại access token sau mỗi lần access token hết hạn
 module.exports.token = {
     accessToken: (data) =>
         jwt.sign(
-            { iduser: data.iduser, email: data.email }, // dữ liệu được mã hóa trong token
-            process.env.JWT_ACCESS_KEY, // Mã khóa để tạo token (secret key)
+            { iduser: data.iduser, email: data.email },
+            process.env.JWT_ACCESS_KEY,
             {
-                expiresIn: '60s', // Thời gian hết hạn của token
+                expiresIn: '60s',
             }
         ),
     refreshToken: (data) =>
@@ -22,7 +20,14 @@ module.exports.token = {
         ),
 };
 
-// Hàm kiểm tra token hết hạn hay chưa
+// Bug 3
+module.exports.cookieOption = {
+    // path: '/',
+    // httpOnly: true,
+    // sameSite: 'strict',
+    // secure: true,
+};
+
 module.exports.isTokenExpried = (token) => {
     const decodeToken = jwt.decode(token);
     const expirationTime = decodeToken.exp * 1000;
