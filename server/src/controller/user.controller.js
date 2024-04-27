@@ -35,8 +35,18 @@ const userController = {
     deleteUser: async (req, res, next) => {
         try {
             const id = req.params.id;
-            query = 'delete from tb_user where user_id = ?';
 
+            // delete all product images of user
+            query =
+                'DELETE FROM tb_product_images WHERE product_id IN (SELECT product_id FROM tb_product WHERE user_id = ?)';
+            await pool.execute(query, [id]);
+
+            // delete all product of user
+            query = 'delete from tb_product where user_id = ?';
+            await pool.execute(query, [id]);
+
+            // delete user
+            query = 'delete from tb_user where user_id = ?';
             await pool.execute(query, [id]);
 
             return res.status(statusCode.OK).json({ message: 'user deleted!' });
