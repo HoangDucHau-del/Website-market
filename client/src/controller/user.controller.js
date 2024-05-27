@@ -260,6 +260,7 @@ const userController = {
 
     logInView: async (req, res, next) => {
         try {
+            // res.cookie('userCheck', 'true');
             return res.render('logIn', { layout: 'empty' });
         } catch (err) {
             next(new appError(err));
@@ -277,6 +278,7 @@ const userController = {
                 }
             );
 
+            res.cookie('userCheck', 'true');
             res.cookie('accessToken', userData.data.accessToken, cookieOption);
             res.cookie(
                 'refreshToken',
@@ -286,8 +288,11 @@ const userController = {
 
             return res.redirect('/');
         } catch (err) {
-            if (err.response.status === 401)
+            if (err.response.status === 401) {
+                res.cookie('userCheck', 'false');
                 return res.redirect(req.headers.referer);
+            }
+
             next(new appError(err));
         }
     },
@@ -399,7 +404,6 @@ const userController = {
                     user: [decode],
                     product: usersData.data,
                 };
-                console.log(data);
 
                 return res.render('admin/adminSystem/systemControl', {
                     layout: 'admin',
