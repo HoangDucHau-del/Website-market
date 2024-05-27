@@ -163,23 +163,24 @@ const userController = {
                 // query user data
                 const [data] = await pool.execute(query, [username, 0]);
 
-                if (data.length === 0) {
+                if (data[0].length === 0) {
                     return res
                         .status(statusCode.UNAUTHORIZED)
                         .json({ message: 'user not found' });
                 }
 
-                bcrypt.compare(password, data[0].password, (err, result) => {
-                    if (err)
-                        return next(new appError(statusCode.BAD_REQUEST, err));
-                    if (!result)
-                        return next(
-                            new appError(
-                                statusCode.FORBIDDEN,
-                                'incorect password'
-                            )
-                        );
-                });
+                const checkPassword = await bcrypt.compare(
+                    password,
+                    data[0].user_password
+                );
+
+                if (!checkPassword)
+                    return next(
+                        new appError(
+                            statusCode.UNAUTHORIZED,
+                            message.UNAUTHORIZED
+                        )
+                    );
 
                 getData = data[0];
             } else {
@@ -191,6 +192,7 @@ const userController = {
                     provider,
                     0,
                 ]);
+                console.log(data[0]);
 
                 if (data.length === 0) {
                     return res
@@ -236,7 +238,6 @@ const userController = {
                 req.body.address,
                 req.body.user_id,
             ];
-            console.log(values);
 
             await pool.execute(query, values);
 
