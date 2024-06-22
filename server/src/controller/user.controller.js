@@ -163,7 +163,7 @@ const userController = {
                 // query user data
                 const [data] = await pool.execute(query, [username, 0]);
 
-                if (data[0].length === 0) {
+                if (!data[0]) {
                     return res
                         .status(statusCode.UNAUTHORIZED)
                         .json({ message: 'user not found' });
